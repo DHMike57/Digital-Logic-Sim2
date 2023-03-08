@@ -6,46 +6,7 @@ on:
     pull_request:
     workflow_dispatch:
 
-
 jobs:
-  build-android:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build
-        uses: game-ci/unity-builder@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          targetPlatform: Android
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: DLS-Android.zip
-          path: build
-
-  build-ios:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build
-        uses: game-ci/unity-builder@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          targetPlatform: iOS
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: DLS-ios.zip
-          path: build
-
   build-windows:
     runs-on: ubuntu-latest
     steps:
@@ -63,25 +24,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: DLS-windows-64.zip
-          path: build
-
-  build-macos:
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build
-        uses: game-ci/unity-builder@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          targetPlatform: StandaloneOSX
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: DLS-macos.zip
           path: build
 
   build-linux:
